@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - [Nama Anda] | Peneliti Perikanan & Kelautan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a; /* Navy biru laut */
+            --secondary: #10b981; /* Hijau emerald */
+            --accent: #f59e0b; /* Amber untuk highlight */
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark);
+            background: linear-gradient(135deg, var(--light) 0%, #e2e8f0 100%);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        
+        /* Header & Nav */
+        header { 
+            background: rgba(255,255,255,0.95); 
+            backdrop-filter: blur(20px); 
+            box-shadow: var(--shadow);
+            position: sticky; top: 0; z-index: 100;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--gray); 
+            font-weight: 500; 
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* Hero Section */
+        #home { padding: 5rem 0; text-align: center; background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%); color: white; }
+        #home h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 1rem; }
+        #home p { font-size: 1.25rem; max-width: 600px; margin: 0 auto 2rem; opacity: 0.95; }
+        .cta-btn { 
+            display: inline-block; 
+            background: var(--secondary); 
+            color: white; 
+            padding: 1rem 2rem; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            transition: all 0.3s ease;
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+        /* Sections */
+        section { padding: 4rem 0; }
+        section h2 { 
+            font-size: 2.5rem; 
+            text-align: center; 
+            margin-bottom: 3rem; 
+            color: var(--primary);
+            position: relative;
+        }
+        section h2::after { 
+            content: ''; 
+            width: 60px; 
+            height: 4px; 
+            background: linear-gradient(90deg, var(--secondary), var(--accent)); 
+            display: block; 
+            margin: 1rem auto;
+        }
+
+        /* Biodata */
+        .biodata-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .info-card { 
+            background: white; 
+            padding: 2rem; 
+            border-radius: 12px; 
+            box-shadow: var(--shadow); 
+            transition: transform 0.3s ease;
+        }
+        .info-card:hover { transform: translateY(-5px); }
+        .info-card i { font-size: 2rem; color: var(--secondary); margin-bottom: 1rem; }
+        .info-card h3 { color: var(--primary); margin-bottom: 0.5rem; }
+
+        /* Gallery & Video */
+        .media-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 1.5rem; 
+        }
+        .media-item { 
+            background: white; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: var(--shadow); 
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .media-item:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
+        .media-item img, .media-item video { width: 100%; height: 200px; object-fit: cover; }
+        .media-overlay { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: linear-gradient(transparent, rgba(0,0,0,0.8)); 
+            color: white; 
+            padding: 1rem; 
+        }
+
+        /* Footer */
+        footer { 
+            background: var(--dark); 
+            color: white; 
+            text-align: center; 
+            padding: 2rem 0; 
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .biodata-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        section { animation: fadeInUp 0.8s ease-out; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo"> Apriliana Putri - 2310715220004</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#biodata">Biodata</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#video">Video</a></li>
+            </ul>
+            <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="container">
+            <h1>Peneliti Kelautan & Perikanan</h1>
+            <p>Spesialis Manajemen Sumber Daya Perairan, Analisis Ekonomi Perikanan, dan Kebijakan Berkelanjutan di Kalimantan Selatan.</p>
+            <a href="#biodata" class="cta-btn">Lihat Profil <i class="fas fa-arrow-down"></i></a>
+        </div>
+    </section>
+
+    <section id="biodata">
+        <div class="container">
+            <h2>Profil Profesional</h2>
+            <div class="biodata-grid">
+                <div class="info-card">
+                    <i class="fas fa-user"></i>
+                    <h3>Nama Lengkap</h3>
+                    <p>[Nama Lengkap Anda]</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Pendidikan</h3>
+                    <p>S1 Perikanan, Universitas Lambung Mangkurat<br>Magister Manajemen Sumber Daya Kelautan</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Pekerjaan</h3>
+                    <p>Peneliti Senior - Analisis Ekonomi & Kebijakan Perikanan<br>Instansi Penelitian Kelautan Banjarmasin</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Domisili</h3>
+                    <p>Banjarmasin, Kalimantan Selatan<br>Indonesia</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Keahlian</h3>
+                    <p>SWOT Analisis Perikanan, Review Literatur Sistematis, RBA Cost-Benefit</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Kontak</h3>
+                    <p>email@[domain].ac.id<br>+62 [Nomor HP]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2>Gallery</h2>
+        
+                    <img src="foto1.jpeg" alt="Foto Bersama" width="600">
+                    <div class="media-overlay">
+                        <h4>foto bersama</h4>
+                        <p>Manajemen Perikanan Berkelanjutan</p>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <img src="images/proyek2.jpg" alt="Analisis Marketing">
+                    <div class="media-overlay">
+                        <h4>Marketing Ikan</h4>
+                        <p>Ekonomi Pemasaran Perikanan</p>
+                    </div>
+                </div>
+                <!-- Tambahkan 4 gambar lagi -->
+                <div class="media-item"><img src="images/proyek3.jpg" alt="Proyek 3"><div class="media-overlay"><h4>Proyek 3</h4><p>Deskripsi singkat</p></div></div>
+                <div class="media-item"><img src="images/proyek4.jpg" alt="Proyek 4"><div class="media-overlay"><h4>Proyek 4</h4><p>Deskripsi singkat</p></div></div>
+                <div class="media-item"><img src="images/proyek5.jpg" alt="Proyek 5"><div class="media-overlay"><h4>Proyek 5</h4><p>Deskripsi singkat</p></div></div>
+                <div class="media-item"><img src="images/proyek6.jpg" alt="Proyek 6"><div class="media-overlay"><h4>Proyek 6</h4><p>Deskripsi singkat</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video">
+        <div class="container">
+            <h2>Presentasi & Video</h2>
+            <div class="media-grid">
+                <div class="media-item">
+                    <video controls>
+                        <source src="videos/presentasi1.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-overlay">
+                        <h4>Seminar Perikanan</h4>
+                        <p>Strategi Kebijakan 2026</p>
+                    </div>
+                </div>
+                <!-- Tambahkan 2 video lagi -->
+                <div class="media-item">
+                    <video controls>
+                        <source src="videos/presentasi2.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-overlay">
+                        <h4>Training Pengolahan</h4>
+                        <p>Produk Perikanan</p>
+                    </div>
+                </div>
+                <div class="media-item">
+                    <video controls>
+                        <source src="videos/presentasi3.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-overlay">
+                        <h4>Review Literatur</h4>
+                        <p>Manajemen Batakar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 [Nama Anda]. Peneliti Perikanan Kelautan. Banjarmasin, Kalsel. <i class="fas fa-fish"></i></p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling & active nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Intersection Observer untuk animations
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        });
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
